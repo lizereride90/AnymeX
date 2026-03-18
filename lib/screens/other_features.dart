@@ -2,6 +2,7 @@ import 'package:anymex/screens/anime/misc/barcode_scanner_page.dart';
 import 'package:anymex/screens/anime/misc/calendar.dart';
 import 'package:anymex/screens/anime/misc/list_exporter.dart';
 import 'package:anymex/screens/anime/misc/recommendation.dart';
+import 'package:anymex/screens/community/community_page.dart';
 import 'package:anymex/utils/function.dart';
 import 'package:anymex/utils/theme_extensions.dart';
 import 'package:anymex/widgets/common/glow.dart';
@@ -58,6 +59,25 @@ class OtherFeaturesPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 12),
+                      Expanded(
+                        child: _FeatureCard(
+                          icon: Icons.groups_rounded,
+                          title: 'Community',
+                          description: 'Share and read posts',
+                          color: colorScheme.secondaryContainer,
+                          onColor: colorScheme.onSecondaryContainer,
+                          onTap: () => navigate(() => CommunityPage()),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 170,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
                       Expanded(
                         child: _FeatureCard(
                           icon: Icons.auto_awesome,
