@@ -1,0 +1,56 @@
+name: CI Compile
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  FLUTTER_VERSION: "3.32.8"
+
+jobs:
+  android-debug-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Create dummy .env for build
+        run: |
+          cat > .env <<'EOF'
+          AL_CLIENT_ID=dummy
+          AL_CLIENT_SECRET=dummy
+          SIMKL_CLIENT_ID=dummy
+          SIMKL_CLIENT_SECRET=dummy
+          MAL_CLIENT_ID=dummy
+          MAL_CLIENT_SECRET=dummy
+          GOOGLE_BOOKS_API_KEY=dummy
+          GIT_CLIENT_ID=dummy
+          GIT_CLIENT_SECRET=dummy
+          GIT_REDIRECT_URI=anymex://callback
+          GIT_CALLBACK_SCHEME=anymex
+          CALLBACK_SCHEME=anymex
+          EOF
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test --reporter=compact
+
+      - name: Build debug APK
+        run: flutter build apk --debug
