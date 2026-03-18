@@ -2,7 +2,6 @@ import 'package:anymex/screens/anime/misc/barcode_scanner_page.dart';
 import 'package:anymex/screens/anime/misc/calendar.dart';
 import 'package:anymex/screens/anime/misc/list_exporter.dart';
 import 'package:anymex/screens/anime/misc/recommendation.dart';
-import 'package:anymex/screens/community/community_page.dart';
 import 'package:anymex/utils/function.dart';
 import 'package:anymex/utils/theme_extensions.dart';
 import 'package:anymex/widgets/common/glow.dart';
@@ -43,34 +42,14 @@ class OtherFeaturesPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
-                SizedBox(
-                  height: 170,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Expanded(
-                        child: _FeatureCard(
-                          icon: Icons.calendar_month_rounded,
-                          title: 'Calendar',
-                          description: 'Track airing schedules',
-                          color: colorScheme.secondaryContainer,
-                          onColor: colorScheme.onSecondaryContainer,
-                          onTap: () => navigate(() => const Calendar()),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: _FeatureCard(
-                          icon: Icons.groups_rounded,
-                          title: 'Community',
-                          description: 'Share and read posts',
-                          color: colorScheme.secondaryContainer,
-                          onColor: colorScheme.onSecondaryContainer,
-                          onTap: () => navigate(() => CommunityPage()),
-                        ),
-                      ),
-                    ],
-                  ),
+                _FeatureCard(
+                  icon: Icons.calendar_month_rounded,
+                  title: 'Calendar',
+                  description: 'Track airing schedules',
+                  color: colorScheme.secondaryContainer,
+                  onColor: colorScheme.onSecondaryContainer,
+                  isFullWidth: true,
+                  onTap: () => navigate(() => const Calendar()),
                 ),
                 const SizedBox(height: 12),
                 SizedBox(
